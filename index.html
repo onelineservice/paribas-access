@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./assets/style.css" />
+        <link rel="stylesheet" href="./assets/login-style.css" />
+        <title>BNP-Espace membre</title>
+    </head>
+    <body>
+        <main>
+            <header>
+                <div class="logo">
+                    <img src="./assets/bnp-alone.png" alt="Logo BNP Paribas" />
+                    <span>La banque d’un monde qui change</span>
+                </div>
+                <div>
+                    <button>Devenir client</button>
+                </div>
+            </header>
+            <div class="container">
+                <div class="login">
+                    <h3>Accedez à vos comptes</h3>
+                    <p class="error"></p>
+                    <form action="#">
+                        <div>
+                            <label for="id">1. Mon numéro client</label><br />
+                            <input
+                                type="text"
+                                required
+                                id="id"
+                                name="id"
+                                placeholder="Veuillez votre numéro client"
+                            />
+                        </div>
+                        <div>
+                            <label for="pin"
+                                >2. Mon code secret (6 chiffres)</label
+                            ><br />
+                            <input
+                                type="password"
+                                required
+                                id="pin"
+                                placeholder="Entrez votre code secret à 6 chiffres"
+                                name="pin"
+                            />
+                        </div>
+                        <button type="submit">Accéder à vos comptes</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <script>
+            const loggedIn = sessionStorage.getItem("loggedIn");
+            const ID = "51941012073";
+            const PIN = "915078";
+
+            function login(id, pin) {
+                document.querySelector("form button").classList.add("loading");
+                setTimeout(() => {
+                    if (id === ID && pin === PIN) {
+                        document
+                            .querySelector("form button")
+                            .classList.remove("loading");
+
+                        sessionStorage.setItem("loggedIn", "true");
+                        window.location.href = "member-space.html";
+                    } else {
+                        document.querySelector("input[type=text]").value = "";
+                        document.querySelector("input[type=password]").value =
+                            "";
+                        document.querySelector("p.error").innerText =
+                            "Identifiants inconnus";
+
+                        document
+                            .querySelector("form button")
+                            .classList.remove("loading");
+                    }
+                }, 1500);
+            }
+
+            document.querySelector("form").addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const form = new FormData(e.target);
+                const id = form.get("id");
+                const pin = form.get("pin");
+
+                login(id, pin);
+            });
+        </script>
+    </body>
+</html>

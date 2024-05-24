@@ -1,0 +1,40 @@
+main {
+    margin-bottom: 32px;
+}
+.login {
+    max-width: 500px;
+    margin: auto;
+}
+label {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+h3 {
+    font-size: 1.6rem;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+input,
+button[type="submit"] {
+    padding: 15px;
+    width: 100%;
+    background-color: #f2f2f2;
+    outline: none;
+    border: 1px solid #7c7c7c;
+}
+button[type="submit"] {
+    background-color: #197647;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button.loading {
+    background: #b4e4cc;
+}
+.error {
+    color: rgb(184, 73, 73);
+    margin-bottom: 32px;
+}
